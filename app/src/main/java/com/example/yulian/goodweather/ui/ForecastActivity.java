@@ -7,6 +7,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -23,11 +24,11 @@ public class ForecastActivity  extends AppCompatActivity implements Serializable
     public double mLatitube = 0.0;
     public double mLongtitube = 0.0;
     public String mCityCountry = "";
-    public double mLat = 0.0;
-    public double mLon = 0.0;
-    public String mCity = "";
     Bundle bundle = new Bundle();
     Bundle bundle1 = new Bundle();
+    final CurrentWeatherFragment currentWeatherFragment = new CurrentWeatherFragment();
+    final HourlyWeatherFragment hourlyWeatherFragment = new HourlyWeatherFragment();
+    final DailyWeatherFragment dailyWeatherFragment = new DailyWeatherFragment();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,9 +38,7 @@ public class ForecastActivity  extends AppCompatActivity implements Serializable
         setSupportActionBar(toolbar);
         tabLayout = (TabLayout) findViewById(R.id.tabLayout);
         viewPager = (ViewPager) findViewById(R.id.pager);
-        final CurrentWeatherFragment currentWeatherFragment = new CurrentWeatherFragment();
-        final HourlyWeatherFragment hourlyWeatherFragment = new HourlyWeatherFragment();
-        final DailyWeatherFragment dailyWeatherFragment = new DailyWeatherFragment();
+
 
         viewPager.setAdapter(new FragmentPagerAdapter(getSupportFragmentManager()) {
             @Override
@@ -51,18 +50,20 @@ public class ForecastActivity  extends AppCompatActivity implements Serializable
                     hourlyWeatherFragment.setArguments(bundleBulid(bundle));
                     return hourlyWeatherFragment;
                 }
-                else
+                else if(position == 2)
                 {
                     dailyWeatherFragment.setArguments(bundleBulid(bundle1));
                     return dailyWeatherFragment;
                 }
+                else return null;
             }
 
             @Override
             public CharSequence getPageTitle(int position) {
                 if (position == 0) return "CURRENT";
                 else if(position == 1) return "HOURLY";
-                else  return "7 DAY";
+                else if(position == 2) return "7 DAY";
+                else return null;
             }
 
             @Override
@@ -102,9 +103,9 @@ public class ForecastActivity  extends AppCompatActivity implements Serializable
         mLatitube = lat;
         mLongtitube = lon;
         mCityCountry = city_country_text;
-       /* Log.e("LOG","привет, я строка из фрагмента: " + mLatitube);
+        Log.e("LOG","привет, я строка из фрагмента: " + mLatitube);
         Log.e("LOG","привет, я строка из фрагмента: " + mLongtitube);
-        Log.e("LOG","привет, я строка из фрагмента: " + mCityCountry);*/
+        Log.e("LOG","привет, я строка из фрагмента: " + mCityCountry);
     }
 
 }

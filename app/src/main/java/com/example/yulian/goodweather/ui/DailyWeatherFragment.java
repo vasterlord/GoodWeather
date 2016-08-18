@@ -52,7 +52,18 @@ public class DailyWeatherFragment extends Fragment {
                              Bundle savedInstanceState) {
 
         View dailyFragment = inflater.inflate(R.layout.fragment_daily_weather, container, false);
-
+        if (getArguments() != null) {
+            mLat = DailyWeatherFragment.this.getArguments().getDouble("lati");
+            mLon = DailyWeatherFragment.this.getArguments().getDouble("lon");
+            mCityCountry = DailyWeatherFragment.this.getArguments().getString("city_counrty");
+           /* Log.e("TESTING","Lat = : " + mLat);
+            Log.e("TESTING","Lon = " + mLon);
+            Log.e("TESTING","City&Country: " + mCityCountry);*/
+        }
+        else
+        {
+            Log.i("LOG", "getArgument is null");
+        }
         mLocationLabel = (TextView) dailyFragment.findViewById(R.id.locationLabel);
         mListView = (ListView) dailyFragment.findViewById(android.R.id.list);
         mEmptyTextView = (TextView) dailyFragment.findViewById(android.R.id.empty);
@@ -116,9 +127,105 @@ public class DailyWeatherFragment extends Fragment {
             mLat = DailyWeatherFragment.this.getArguments().getDouble("lati");
             mLon = DailyWeatherFragment.this.getArguments().getDouble("lon");
             mCityCountry = DailyWeatherFragment.this.getArguments().getString("city_counrty");
-           /* Log.e("TESTING","Lat = : " + mLat);
+            /*Log.e("TESTING","Lat = : " + mLat);
             Log.e("TESTING","Lon = " + mLon);
             Log.e("TESTING","City&Country: " + mCityCountry);*/
+        }
+        else
+        {
+            Log.i("LOG", "getArgument is null");
+        }
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        if (getArguments() != null) {
+            mLat = DailyWeatherFragment.this.getArguments().getDouble("lati");
+            mLon = DailyWeatherFragment.this.getArguments().getDouble("lon");
+            mCityCountry = DailyWeatherFragment.this.getArguments().getString("city_counrty");
+            /*Log.e("TESTING","Lat = : " + mLat);
+            Log.e("TESTING","Lon = " + mLon);
+            Log.e("TESTING","City&Country: " + mCityCountry);*/
+            updateWeatherData(mLat, mLon);
+            mLocationLabel.setText(mCityCountry);
+        }
+        else
+        {
+            Log.i("LOG", "getArgument is null");
+        }
+
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (getArguments() != null) {
+            mLat = DailyWeatherFragment.this.getArguments().getDouble("lati");
+            mLon = DailyWeatherFragment.this.getArguments().getDouble("lon");
+            mCityCountry = DailyWeatherFragment.this.getArguments().getString("city_counrty");
+            /*Log.e("TESTING","Lat = : " + mLat);
+            Log.e("TESTING","Lon = " + mLon);
+            Log.e("TESTING","City&Country: " + mCityCountry);*/
+            updateWeatherData(mLat, mLon);
+            mLocationLabel.setText(mCityCountry);
+        }
+        else
+        {
+            Log.i("LOG", "getArgument is null");
+        }
+    }
+
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        if (getArguments() != null) {
+            mLat = DailyWeatherFragment.this.getArguments().getDouble("lati");
+            mLon = DailyWeatherFragment.this.getArguments().getDouble("lon");
+            mCityCountry = DailyWeatherFragment.this.getArguments().getString("city_counrty");
+            /*Log.e("TESTING","Lat = : " + mLat);
+            Log.e("TESTING","Lon = " + mLon);
+            Log.e("TESTING","City&Country: " + mCityCountry);*/
+            updateWeatherData(mLat, mLon);
+            mLocationLabel.setText(mCityCountry);
+        }
+        else
+        {
+            Log.i("LOG", "getArgument is null");
+        }
+    }
+
+    @Override
+    public void onViewStateRestored(@Nullable Bundle savedInstanceState) {
+        super.onViewStateRestored(savedInstanceState);
+        if (getArguments() != null) {
+            mLat = DailyWeatherFragment.this.getArguments().getDouble("lati");
+            mLon = DailyWeatherFragment.this.getArguments().getDouble("lon");
+            mCityCountry = DailyWeatherFragment.this.getArguments().getString("city_counrty");
+            /*Log.e("TESTING","Lat = : " + mLat);
+            Log.e("TESTING","Lon = " + mLon);
+            Log.e("TESTING","City&Country: " + mCityCountry);*/
+            updateWeatherData(mLat, mLon);
+            mLocationLabel.setText(mCityCountry);
+        }
+        else
+        {
+            Log.i("LOG", "getArgument is null");
+        }
+    }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        if (getArguments() != null) {
+            mLat = DailyWeatherFragment.this.getArguments().getDouble("lati");
+            mLon = DailyWeatherFragment.this.getArguments().getDouble("lon");
+            mCityCountry = DailyWeatherFragment.this.getArguments().getString("city_counrty");
+            /*Log.e("TESTING","Lat = : " + mLat);
+            Log.e("TESTING","Lon = " + mLon);
+            Log.e("TESTING","City&Country: " + mCityCountry);*/
+            updateWeatherData(mLat, mLon);
+            mLocationLabel.setText(mCityCountry);
         }
         else
         {
